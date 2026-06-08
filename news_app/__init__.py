@@ -1,0 +1,2 @@
+"""Local news aggregation application."""
+

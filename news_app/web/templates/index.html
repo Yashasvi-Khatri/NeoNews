@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="topbar">
+  <div>
+    <h1>Daily World News</h1>
+    <p class="muted">
+      {{ stats.total }} headlines for {{ target_date }}
+      {% if stats.bookmarked %} · {{ stats.bookmarked }} saved{% endif %}
+    </p>
+  </div>
+  <div class="top-actions">
+    <span class="offline-state" id="offline-state" hidden>Offline</span>
+    <button class="primary" id="ingest-button" type="button">Ingest Latest 24 Hours</button>
+  </div>
+</section>
+
+<nav class="view-tabs" aria-label="News views">
+  <a href="/?view=latest" class="{% if selected_view == 'latest' %}active{% endif %}">Latest</a>
+  <a href="/?view=read_later" class="{% if selected_view == 'read_later' %}active{% endif %}">Read Later</a>
+</nav>
+
+<form class="filters" method="get" action="/">
+  <input type="hidden" name="view" value="{{ selected_view }}">
+  <label>
+    Region
+    <select name="region">
+      <option value="">All</option>
+      {% for item in regions %}
+      <option value="{{ item }}" {% if item == selected_region %}selected{% endif %}>{{ item }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label>
+    Source
+    <select name="source">
+      <option value="">All</option>
+      {% for item in sources %}
+      <option value="{{ item }}" {% if item == selected_source %}selected{% endif %}>{{ item }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <div class="category-chips" role="group" aria-label="Categories">
+    <button type="submit" name="category" value="" class="chip {% if not selected_category %}active{% endif %}">
+      All
+    </button>
+    {% for item in categories %}
+    <button
+      type="submit"
+      name="category"
+      value="{{ item.name }}"
+      class="chip {% if item.name == selected_category %}active{% endif %}"
+    >
+      {{ item.name }}{% if item.count %}<span>{{ item.count }}</span>{% endif %}
+    </button>
+    {% endfor %}
+  </div>
+
+  <button type="submit">Apply</button>
+</form>
+
+<section id="notice" class="notice" hidden></section>
+
+<section class="layout">
+  <div class="article-list" id="article-list">
+    {% if articles %}
+      {% for article in articles %}
+      <article class="article-row" data-article-id="{{ article.id }}">
+        <a class="thumbnail" href="{{ article.article_path }}" aria-label="{{ article.headline }}">
+          <img src="{{ article.thumbnail_path or '/static/fallbacks/news.svg' }}" alt="" loading="lazy" onerror="this.onerror=null;this.src='/static/fallbacks/news.svg';">
+        </a>
+        <div class="article-main">
+          <p class="kicker">
+            <span>{{ article.primary_category }}</span>
+            <span>{{ article.reading_time_minutes }} min read</span>
+          </p>
+          <h2><a href="{{ article.article_path }}">{{ article.headline }}</a></h2>
+          <p class="meta">
+            <span>{{ article.source_name }}</span>
+            <span>{{ article.source_country }}</span>
+            <span>{{ article.source_region }}</span>
+            <time datetime="{{ article.published_at }}">{{ article.published_at_display }}</time>
+          </p>
+          {% if article.description %}
+          <p class="description">{{ article.description }}</p>
+          {% endif %}
+        </div>
+        <div class="actions">
+          <button
+            type="button"
+            class="bookmark-button {% if article.is_bookmarked %}active{% endif %}"
+            data-article-id="{{ article.id }}"
+            data-bookmarked="{{ 'true' if article.is_bookmarked else 'false' }}"
+            aria-pressed="{{ 'true' if article.is_bookmarked else 'false' }}"
+          >
+            {{ "Saved" if article.is_bookmarked else "Read Later" }}
+          </button>
+          <button type="button" class="summary-button" data-article-id="{{ article.id }}">Summary</button>
+          <button type="button" class="share-button" data-article-id="{{ article.id }}">Share</button>
+          <a
+            href="{{ article.article_url }}"
+            target="_blank"
+            rel="noreferrer"
+            class="source-link"
+            data-article-id="{{ article.id }}"
+          >
+            Source
+          </a>
+        </div>
+      </article>
+      {% endfor %}
+    {% else %}
+      <div class="empty">
+        <h2>No saved headlines</h2>
+        <p class="muted">
+          {% if selected_view == 'read_later' %}
+          Bookmark articles to build this list.
+          {% else %}
+          Run latest 24-hour ingestion or adjust the filters.
+          {% endif %}
+        </p>
+      </div>
+    {% endif %}
+  </div>
+
+  <aside class="summary-panel" id="summary-panel">
+    <div class="panel-header">
+      <h2>Summary</h2>
+      <button type="button" id="close-summary" aria-label="Close">x</button>
+    </div>
+    <p class="muted" id="summary-source"></p>
+    <div id="summary-content" class="summary-content">Select a headline.</div>
+    <a id="summary-link" href="#" target="_blank" rel="noreferrer" hidden>Open source</a>
+  </aside>
+</section>
+{% endblock %}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="News app icon">
+  <rect width="128" height="128" rx="18" fill="#0f766e"/>
+  <rect x="24" y="28" width="80" height="76" rx="6" fill="#ffffff"/>
+  <rect x="34" y="42" width="46" height="8" rx="2" fill="#15191d"/>
+  <rect x="34" y="58" width="60" height="5" rx="2.5" fill="#63717b"/>
+  <rect x="34" y="70" width="60" height="5" rx="2.5" fill="#63717b"/>
+  <rect x="34" y="82" width="38" height="5" rx="2.5" fill="#63717b"/>
+</svg>

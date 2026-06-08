@@ -1,0 +1,234 @@
+{
+  "sources": [
+    {
+      "name": "News18 India",
+      "country": "India",
+      "region": "India",
+      "language": "en",
+      "type": "publisher",
+      "homepage": "https://www.news18.com/india/",
+      "feed_url": "https://www.news18.com/commonfeeds/v1/eng/rss/india.xml",
+      "enabled": true
+    },
+    {
+      "name": "Firstpost India",
+      "country": "India",
+      "region": "India",
+      "language": "en",
+      "type": "publisher",
+      "homepage": "https://www.firstpost.com/india/",
+      "feed_url": "https://www.firstpost.com/commonfeeds/v1/mfp/rss/india.xml",
+      "enabled": true
+    },
+    {
+      "name": "Indian Express",
+      "country": "India",
+      "region": "India",
+      "language": "en",
+      "type": "newspaper",
+      "homepage": "https://indianexpress.com/",
+      "feed_url": "https://indianexpress.com/section/india/feed/",
+      "enabled": true
+    },
+    {
+      "name": "Hindustan Times India",
+      "country": "India",
+      "region": "India",
+      "language": "en",
+      "type": "newspaper",
+      "homepage": "https://www.hindustantimes.com/india-news",
+      "feed_url": "https://www.hindustantimes.com/feeds/rss/india-news/rssfeed.xml",
+      "enabled": true
+    },
+    {
+      "name": "NDTV",
+      "country": "India",
+      "region": "India",
+      "language": "en",
+      "type": "publisher",
+      "homepage": "https://www.ndtv.com/",
+      "feed_url": "https://feeds.feedburner.com/ndtvnews-latest",
+      "enabled": true
+    },
+    {
+      "name": "Times of India",
+      "country": "India",
+      "region": "India",
+      "language": "en",
+      "type": "newspaper",
+      "homepage": "https://timesofindia.indiatimes.com/",
+      "feed_url": "https://timesofindia.indiatimes.com/rssfeeds/-2128936835.cms",
+      "enabled": true
+    },
+    {
+      "name": "Times Now",
+      "country": "India",
+      "region": "India",
+      "language": "en",
+      "type": "publisher",
+      "homepage": "https://www.timesnownews.com/",
+      "feed_url": "https://www.timesnownews.com/feeds/gns-en-latest.xml",
+      "enabled": true
+    },
+    {
+      "name": "CNBC TV18",
+      "country": "India",
+      "region": "India",
+      "language": "en",
+      "type": "business",
+      "homepage": "https://www.cnbctv18.com/",
+      "feed_url": "https://www.cnbctv18.com/commonfeeds/v1/cne/rss/latest.xml",
+      "enabled": true
+    },
+    {
+      "name": "Moneycontrol",
+      "country": "India",
+      "region": "India",
+      "language": "en",
+      "type": "business",
+      "homepage": "https://www.moneycontrol.com/",
+      "feed_url": "https://www.moneycontrol.com/rss/latestnews.xml",
+      "enabled": true
+    },
+    {
+      "name": "Livemint",
+      "country": "India",
+      "region": "India",
+      "language": "en",
+      "type": "business",
+      "homepage": "https://www.livemint.com/",
+      "feed_url": "https://www.livemint.com/rss/news",
+      "enabled": true
+    },
+    {
+      "name": "ABP Live",
+      "country": "India",
+      "region": "India",
+      "language": "en",
+      "type": "publisher",
+      "homepage": "https://news.abplive.com/",
+      "feed_url": "https://news.abplive.com/home/feed",
+      "enabled": true
+    },
+    {
+      "name": "Free Press Journal",
+      "country": "India",
+      "region": "India",
+      "language": "en",
+      "type": "newspaper",
+      "homepage": "https://www.freepressjournal.in/",
+      "feed_url": "https://www.freepressjournal.in/stories.rss",
+      "enabled": true
+    },
+    {
+      "name": "The Tribune India",
+      "country": "India",
+      "region": "India",
+      "language": "en",
+      "type": "newspaper",
+      "homepage": "https://www.tribuneindia.com/",
+      "feed_url": "https://publish.tribuneindia.com/newscategory/india/feed/",
+      "enabled": true
+    },
+    {
+      "name": "Asianet Newsable",
+      "country": "India",
+      "region": "India",
+      "language": "en",
+      "type": "publisher",
+      "homepage": "https://newsable.asianetnews.com/",
+      "feed_url": "https://newsable.asianetnews.com/rss",
+      "enabled": true
+    },
+    {
+      "name": "Reuters",
+      "country": "United Kingdom",
+      "region": "World",
+      "language": "en",
+      "type": "wire",
+      "homepage": "https://www.reuters.com/world/",
+      "feed_url": "https://www.reuters.com/world/",
+      "enabled": false
+    },
+    {
+      "name": "ANI",
+      "country": "India",
+      "region": "India",
+      "language": "en",
+      "type": "wire",
+      "homepage": "https://www.aninews.in/",
+      "feed_url": "https://www.aninews.in/rssfeed.xml",
+      "enabled": false
+    },
+    {
+      "name": "PTI News",
+      "country": "India",
+      "region": "India",
+      "language": "en",
+      "type": "wire",
+      "homepage": "https://www.ptinews.com/",
+      "feed_url": "https://www.ptinews.com/rss.xml",
+      "enabled": false
+    },
+    {
+      "name": "The Tatva",
+      "country": "India",
+      "region": "India",
+      "language": "en",
+      "type": "publisher",
+      "homepage": "https://thetatva.in/",
+      "feed_url": "https://thetatva.in/feed/",
+      "enabled": false
+    },
+    {
+      "name": "Latestly.com",
+      "country": "India",
+      "region": "India",
+      "language": "en",
+      "type": "publisher",
+      "homepage": "https://www.latestly.com/",
+      "feed_url": "https://www.latestly.com/india/feed/",
+      "enabled": false
+    },
+    {
+      "name": "Wiley Newsroom",
+      "country": "United States",
+      "region": "World",
+      "language": "en",
+      "type": "publisher",
+      "homepage": "https://newsroom.wiley.com/",
+      "feed_url": "https://newsroom.wiley.com/",
+      "enabled": false
+    },
+    {
+      "name": "BBC World",
+      "country": "United Kingdom",
+      "region": "Europe",
+      "language": "en",
+      "type": "public_broadcaster",
+      "homepage": "https://www.bbc.com/news/world",
+      "feed_url": "https://feeds.bbci.co.uk/news/world/rss.xml",
+      "enabled": true
+    },
+    {
+      "name": "The Guardian World",
+      "country": "United Kingdom",
+      "region": "Europe",
+      "language": "en",
+      "type": "newspaper",
+      "homepage": "https://www.theguardian.com/world",
+      "feed_url": "https://www.theguardian.com/world/rss",
+      "enabled": true
+    },
+    {
+      "name": "NPR World",
+      "country": "United States",
+      "region": "North America",
+      "language": "en",
+      "type": "public_broadcaster",
+      "homepage": "https://www.npr.org/sections/world/",
+      "feed_url": "https://feeds.npr.org/1004/rss.xml",
+      "enabled": true
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="article-detail" data-article-id="{{ article.id }}">
+  <div class="article-detail-nav">
+    <a href="/">Back to headlines</a>
+    <span class="offline-state" id="offline-state" hidden>Offline</span>
+  </div>
+
+  <p class="kicker">
+    <span>{{ article.primary_category }}</span>
+    <span>{{ article.reading_time_minutes }} min read</span>
+    <span>{{ article.source_name }}</span>
+    <time datetime="{{ article.published_at }}">{{ article.published_at[:16].replace("T", " ") }}</time>
+  </p>
+
+  <h1>{{ article.headline }}</h1>
+
+  <img class="detail-image" src="{{ article.thumbnail_path or '/static/fallbacks/news.svg' }}" alt="" loading="eager" onerror="this.onerror=null;this.src='/static/fallbacks/news.svg';">
+
+  {% if article.description %}
+  <p class="description lead">{{ article.description }}</p>
+  {% endif %}
+
+  <div class="detail-actions">
+    <button
+      type="button"
+      class="bookmark-button {% if article.is_bookmarked %}active{% endif %}"
+      data-article-id="{{ article.id }}"
+      data-bookmarked="{{ 'true' if article.is_bookmarked else 'false' }}"
+      aria-pressed="{{ 'true' if article.is_bookmarked else 'false' }}"
+    >
+      {{ "Saved" if article.is_bookmarked else "Read Later" }}
+    </button>
+    <button type="button" class="summary-button" data-article-id="{{ article.id }}">Summary</button>
+    <button type="button" class="share-button" data-article-id="{{ article.id }}">Share</button>
+    <a
+      href="{{ article.article_url }}"
+      target="_blank"
+      rel="noreferrer"
+      class="source-link"
+      data-article-id="{{ article.id }}"
+    >
+      Source
+    </a>
+  </div>
+
+  <section class="summary-panel detail-summary" id="summary-panel">
+    <div class="panel-header">
+      <h2>Summary</h2>
+      <button type="button" id="close-summary" aria-label="Close">x</button>
+    </div>
+    <p class="muted" id="summary-source"></p>
+    <div id="summary-content" class="summary-content">
+      {{ article.summary if article.summary else "Generate a summary for this article." }}
+    </div>
+    <a id="summary-link" href="{{ article.article_url }}" target="_blank" rel="noreferrer">Open source</a>
+  </section>
+
+  <p class="muted article-note">Full extracted text is kept privately for summaries and offline processing. Open the source for the publisher article.</p>
+</section>
+
+<section id="notice" class="notice" hidden></section>
+{% endblock %}

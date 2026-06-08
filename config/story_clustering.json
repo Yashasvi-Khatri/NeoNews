@@ -1,0 +1,36 @@
+{
+  "strategy": "broad candidate retrieval, flexible cluster expansion, strict conflict blocking",
+  "seed_creation_score": 0.88,
+  "auto_merge_thresholds": {
+    "Politics": 0.84,
+    "India": 0.80,
+    "Crime": 0.88,
+    "Courts": 0.88,
+    "Legal": 0.88,
+    "Business": 0.80,
+    "Economy": 0.80,
+    "Sports": 0.84,
+    "Entertainment": 0.82,
+    "Weather": 0.84,
+    "Disaster": 0.84,
+    "Tech": 0.82,
+    "Technology": 0.82,
+    "General": 0.80
+  },
+  "borderline_min_score": 0.74,
+  "default_time_window_hours": 72,
+  "sensitive_time_window_hours": 48,
+  "source_diversity_boost": 0.03,
+  "weights": {
+    "centroid_similarity": 0.20,
+    "best_article_similarity": 0.15,
+    "title_similarity": 0.15,
+    "summary_similarity": 0.10,
+    "main_entity_overlap": 0.15,
+    "event_phrase_similarity": 0.10,
+    "action_object_compatibility": 0.07,
+    "date_compatibility": 0.04,
+    "location_compatibility": 0.02,
+    "number_compatibility": 0.02
+  }
+}

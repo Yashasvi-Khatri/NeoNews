@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" role="img" aria-label="Policy image">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#e0e7ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="480" height="300" fill="url(#g)"/>
+  <path d="M240 54l164 64H76z" fill="#334155"/>
+  <rect x="102" y="128" width="36" height="88" rx="4" fill="#475569"/>
+  <rect x="180" y="128" width="36" height="88" rx="4" fill="#475569"/>
+  <rect x="258" y="128" width="36" height="88" rx="4" fill="#475569"/>
+  <rect x="336" y="128" width="36" height="88" rx="4" fill="#475569"/>
+  <rect x="78" y="226" width="324" height="22" rx="5" fill="#0f766e"/>
+  <circle cx="240" cy="98" r="16" fill="#f8fafc"/>
+</svg>
