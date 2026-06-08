@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from datetime import date, datetime
+import os
 from pathlib import Path
 import threading
 from typing import Optional
@@ -36,6 +37,15 @@ templates = Jinja2Templates(directory=str(template_dir))
 _ingest_lock = threading.Lock()
 TRENDING_CARD_LIMIT = 10
 VIEWED_CARD_LIMIT = 20
+
+
+@router.get("/api/health")
+def health_check():
+    """Health check endpoint for monitoring serverless function status."""
+    return {
+        "status": "ok",
+        "environment": "serverless" if os.environ.get("VERCEL") else "local"
+    }
 
 
 class EventPayload(BaseModel):
