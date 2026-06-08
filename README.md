@@ -126,7 +126,7 @@ SQLite is configured with WAL mode at connection time to improve concurrent read
 
 ### Prerequisites
 - A [Vercel](https://vercel.com) account
-- An [OpenRouter](https://openrouter.ai) API key
+- An [OpenRouter](https://openrouter.ai) API key (free tier available)
 
 ### Steps
 
@@ -141,7 +141,7 @@ SQLite is configured with WAL mode at connection time to improve concurrent read
    | Variable | Value |
    |---|---|
    | `LLM_PROVIDER` | `openai_compatible` |
-   | `LLM_MODEL` | `qwen/qwen3-4b` (or any OpenRouter model) |
+   | `LLM_MODEL` | `google/gemma-4-31b-it:free` (free) or other OpenRouter model |
    | `OPENAI_COMPATIBLE_BASE_URL` | `https://openrouter.ai/api/v1` |
    | `OPENAI_COMPATIBLE_API_KEY` | Your OpenRouter key (`sk-or-v1-...`) |
    | `OPENAI_COMPATIBLE_REFERER` | Your Vercel app URL |
