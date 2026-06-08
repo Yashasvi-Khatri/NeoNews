@@ -29,7 +29,7 @@ class Settings(BaseSettings):
 
     # Direct local MLX inference. No Ollama server is required or used.
     llm_provider: str = Field(default="openai_compatible", pattern="^(mlx|openai_compatible|disabled)$")
-    llm_model: str = "qwen/qwen3-4b"
+    llm_model: str = "google/gemma-4-31b-it:free"
     mlx_engine: str = Field(default="vlm", pattern="^(auto|lm|vlm)$")
     require_llm: bool = False
     llm_batch_size: int = 8
