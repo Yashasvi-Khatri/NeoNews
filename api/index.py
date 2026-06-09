@@ -6,8 +6,18 @@ This file imports the FastAPI app object and Vercel's Python runtime serves it v
 """
 import sys
 import os
+import logging
+
+# Set up logging for debugging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Ensure the project root is on the path so news_app imports work
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from news_app.main import app  # noqa: F401 — Vercel picks up `app` by name
+try:
+    from news_app.main import app  # noqa: F401 — Vercel picks up `app` by name
+    logger.info("FastAPI app imported successfully")
+except Exception as exc:
+    logger.exception(f"Failed to import FastAPI app: {exc}")
+    raise

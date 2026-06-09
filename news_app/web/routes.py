@@ -44,8 +44,15 @@ def health_check():
     """Health check endpoint for monitoring serverless function status."""
     return {
         "status": "ok",
-        "environment": "serverless" if os.environ.get("VERCEL") else "local"
+        "environment": "serverless" if os.environ.get("VERCEL") else "local",
+        "llm_provider": os.environ.get("LLM_PROVIDER", "not set")
     }
+
+
+@router.get("/")
+def root():
+    """Root endpoint for basic connectivity test."""
+    return {"message": "NeoNews API is running", "health": "/api/health"}
 
 
 class EventPayload(BaseModel):

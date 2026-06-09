@@ -28,7 +28,7 @@ class Settings(BaseSettings):
     notice_sources_file: Path = Path("config/notice_sources.json")
 
     # Direct local MLX inference. No Ollama server is required or used.
-    llm_provider: str = Field(default="openai_compatible", pattern="^(mlx|openai_compatible|disabled)$")
+    llm_provider: str = Field(default="disabled", pattern="^(mlx|openai_compatible|disabled)$")
     llm_model: str = "google/gemma-4-31b-it:free"
     mlx_engine: str = Field(default="vlm", pattern="^(auto|lm|vlm)$")
     require_llm: bool = False
