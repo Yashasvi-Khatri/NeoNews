@@ -7,7 +7,7 @@ import threading
 from typing import Optional
 
 from fastapi import APIRouter, BackgroundTasks, HTTPException, Request, Response
-from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 
@@ -39,20 +39,47 @@ TRENDING_CARD_LIMIT = 10
 VIEWED_CARD_LIMIT = 20
 
 
+# Global exception handler for database errors
+@router.exception_handler(DatabaseOperationError)
+async def database_operation_error_handler(request: Request, exc: DatabaseOperationError):
+    """Handle database operation errors gracefully."""
+    return JSONResponse(
+        status_code=503,
+        content={
+            "error": "Database unavailable",
+            "message": "This endpoint requires a database. Please configure a persistent database (Postgres/Turso) for Vercel deployment.",
+            "detail": str(exc)
+        }
+    )
+
+
 @router.get("/api/health")
 def health_check():
     """Health check endpoint for monitoring serverless function status."""
+    try:
+        from news_app.db import engine, SessionLocal
+        db_status = "available" if engine is not None else "unavailable"
+    except Exception:
+        db_status = "error"
+    
     return {
         "status": "ok",
         "environment": "serverless" if os.environ.get("VERCEL") else "local",
-        "llm_provider": os.environ.get("LLM_PROVIDER", "not set")
+        "llm_provider": os.environ.get("LLM_PROVIDER", "not set"),
+        "database": db_status
     }
 
 
 @router.get("/")
 def root():
     """Root endpoint for basic connectivity test."""
-    return {"message": "NeoNews API is running", "health": "/api/health"}
+    return {"message": "NeoNews API is running", "health": "/api/health", "version": "1.0.0"}
+
+
+@router.get("/api/test")
+def test_endpoint():
+    """Simple test endpoint that doesn't require database."""
+    return {"message": "Test endpoint working", "timestamp": "2024-01-01T00:00:00Z"}
 
 
 class EventPayload(BaseModel):
@@ -435,6 +462,8 @@ def api_summary(request: Request, response: Response, article_id: int):
 
 @router.get("/api/categories")
 def api_categories():
+    service = NewsService()
+    return service.list_categories()
     service = NewsService()
     window = _recent_window()
     try:

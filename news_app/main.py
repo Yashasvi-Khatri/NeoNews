@@ -22,8 +22,16 @@ logger = logging.getLogger(__name__)
 async def lifespan(app: FastAPI):
     configure_logging()
     settings = get_settings()
-    init_db()
-    run_retention_cleanup(settings=settings)
+    try:
+        init_db()
+        logger.info("Database initialized successfully")
+    except Exception as exc:
+        logger.warning(f"Database initialization failed, continuing without database: {exc}")
+    
+    try:
+        run_retention_cleanup(settings=settings)
+    except Exception as exc:
+        logger.warning(f"Retention cleanup failed: {exc}")
 
     # Detect serverless environment (Vercel sets AWS_LAMBDA_FUNCTION_NAME or VERCEL)
     _is_serverless = bool(os.environ.get("VERCEL") or os.environ.get("AWS_LAMBDA_FUNCTION_NAME"))

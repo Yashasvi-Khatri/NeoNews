@@ -67,21 +67,27 @@ def init_db() -> None:
         if _is_serverless and "sqlite" in str(settings.database_url).lower():
             logger.warning("File-based SQLite failed on serverless, falling back to memory")
             global engine, SessionLocal
-            engine = create_engine("sqlite:///:memory:", connect_args={"check_same_thread": False}, future=True)
-            SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False, expire_on_commit=False, future=True)
             try:
+                engine = create_engine("sqlite:///:memory:", connect_args={"check_same_thread": False}, future=True)
+                SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False, expire_on_commit=False, future=True)
                 Base.metadata.create_all(bind=engine)
                 run_migrations(engine)
                 logger.info("In-memory database initialized successfully")
             except Exception as fallback_exc:
                 logger.exception("In-memory database initialization also failed")
-                raise DatabaseOperationError("Database initialization failed") from fallback_exc
+                # On Vercel, completely disable database if both fail
+                logger.warning("Database initialization completely failed, running without database")
+                # Create a dummy engine that will fail gracefully
+                engine = None
+                SessionLocal = None
         else:
             raise DatabaseOperationError("Database initialization failed") from exc
 
 
 @contextmanager
 def session_scope() -> Iterator[Session]:
+    if SessionLocal is None:
+        raise DatabaseOperationError("Database not available in this environment")
     session = SessionLocal()
     try:
         yield session
